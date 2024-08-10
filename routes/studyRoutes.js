@@ -68,21 +68,21 @@ router.post("/first", (req, res) => {
 });
 
 //page 1
-router.get("/page1", (req, res) => {
-  res.render("page1");
+router.get("/floriah", (req, res) => {
+  res.render("floriah");
 });
 
 
 //page 2
-router.get("/page2", (req, res) => {
-  res.render("page2");
+router.get("/florian", (req, res) => {
+  res.render("florian");
 });
 
-router.post("/page2", (req, res) => {
+router.post("/florian", (req, res) => {
   console.log(req.body);
 });
 //page 3
-router.get("/page3", (req, res) => {
+router.get("/floziah", (req, res) => {
   res.render("index");
 });
 
