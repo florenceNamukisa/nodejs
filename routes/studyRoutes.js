@@ -1,91 +1,57 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  // new
-  res.send("Homepage! Hello world.");
+router.get('/', (req, res) => {
+    res.send('lets go out and eat')
 });
 
-router.get("/house", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+
+
+router.get('/', (req, res) => { // new
+    res.send('Homepage! Hello world.');
 });
 
-//quotes page
-router.get("/quotes", (req, res) => {
-  res.sendFile(path.join(__dirname, "../views", "quotes.html"));
-});
-router.post("/quotes", (req, res) => {
-  console.log(req.body);
+router.get('/about', (req, res) => { // new
+    res.send('About page. l need it.');
 });
 
-//agent page
-router.get("/agent", (req, res) => {
-  res.sendFile(__dirname + "/agent.html");
+router.get("/member", (req, res) => {
+    res.send("These are member details");
 });
 
-router.post("/agent", (req, res) => {
-  console.log(req.body);
+router.post("/addmember", (req, res) => {
+    res.send("You have added a member");
 });
 
-//crop page
-router.get("/crop", (req, res) => {
-  res.sendFile(__dirname + "/crop.html");
-});
-router.post("/crop", (req, res) => {
-  console.log(req.body);
-});
-
-router.get("/about", (req, res) => {
-  // new
-  res.send("About page. This is a node.js page with express.");
-});
-
-router.get("/details", (req, res) => {
-  res.send("these are member details");
-});
-
-router.post("/tell", (req, res) => {
-  res.send("tell me more");
-});
-
-router.put("/talk", (req, res) => {
-  res.send("this is put");
-});
-router.delete("/del", (req, res) => {
-  res.send("delete one");
+//rendering views
+router.get('/first', (req, res) => {
+    res.render('index');
+ });
+ 
+router.post('/first', (req, res) => {
+    console.log(req.body);
+   });
+  
+router.get('/input',(req,res) => {
+    res.render('input');
 });
 
 
 
 
-router.get("/first", (req, res) => {
-  res.render("index");
+router.get('/quotes', (req, res) => {
+    res.sendFile(__dirname + './views/quotes.html')
 });
 
-router.post("/first", (req, res) => {
-  console.log(req.body);
+router.post('/quotes', (req, res) => {
+    console.log(req.body)
+});
+router .get('/select', (req, res) => {
+    res.sendFile(__dirname + './views/select.html')
 });
 
-//page 1
-router.get("/floriah", (req, res) => {
-  res.render("floriah");
-});
-
-
-//page 2
-router.get("/florian", (req, res) => {
-  res.render("florian");
-});
-
-router.post("/florian", (req, res) => {
-  console.log(req.body);
-});
-//page 3
-router.get("/floziah", (req, res) => {
-  res.render("index");
-});
-
-
+router.get('/learning',(req,res) =>{
+    res.render('example')
+})
 
 module.exports = router;

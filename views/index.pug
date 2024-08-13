@@ -1,6 +1,10 @@
 doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
 h2 HTML Forms
-form(action='#' method="POST")
+form(action='#' method = 'POST')
   label(for='fname') First name:
   br
   input#fname(type='text' name='fname')
@@ -11,5 +15,3 @@ form(action='#' method="POST")
   br
   br
   input(type='submit' value='Submit')
-p
-  | If you click the &quot;Submit&quot; button, the form-data will be sent to a page called &quot;/action_page.php&quot;.

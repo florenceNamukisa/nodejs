@@ -3,27 +3,22 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 
+
 require('dotenv').config();
 
 //import models
 //importing routes
+const loginRoutes = require('./routes/loginRoutes')
 const inputRoutes = require('./routes/inputRoutes')
-const studyRoutes = require ('./routes/studyRoutes')
-
-
-
-
+const studyRoutes = require('./routes/studyRoutes')
+const signRoutes = require('./routes/signRoutes')
+const cropRoutes = require('./routes/cropRoutes')
 
 
 
 //instantiations
 const app = express();
-const port = 3500;
-
-
-
-
-
+const port = 4002;
 
 
 
@@ -33,15 +28,20 @@ const port = 3500;
 mongoose.connect(process.env.DATABASE_LOCAL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  });
-  
-  mongoose.connection
+});
+
+mongoose.connection
   .once("open", () => {
-  console.log("Mongoose connection open");
+    console.log("Mongoose connection open");
   })
   .on("error", err => {
-  console.error(`Connection error: ${err.message}`);
+    console.error(`Connection error: ${err.message}`);
   });
+
+
+
+
+
 //set view engine to pug
 
 app.set("view engine", "pug");// specify the view engine
@@ -54,9 +54,8 @@ app.set("views", path.join(__dirname, "views"));// specify the view directory
 
 
 //middleware
-
 app.use(express.static(path.join(__dirname, "public")));//specify a folder for static files
-app.use(express.urlencoded({extended: true}));// helps to parse data from forms
+app.use(express.urlencoded({ extended: true }));// helps to parse data from forms
 app.use(express.json());// helps to capture data in json
 
 
@@ -67,9 +66,11 @@ app.use(express.json());// helps to capture data in json
 
 //Routes
 //use routes/use imported routes
-
 app.use('/study', studyRoutes)
 app.use('/', inputRoutes)
+app.use('/', loginRoutes)
+app.use('/', signRoutes)
+app.use('/', cropRoutes)
 
 app.get("*", (req, res) => {
   res.send("error! page does not exist");
@@ -77,4 +78,4 @@ app.get("*", (req, res) => {
 
 
 //bootstraping a server
-app.listen(port, ()=> console.log(`listening on port ${port}`));// string interporation
+app.listen(port, () => console.log(`listening on port ${port}`));// string interporation
